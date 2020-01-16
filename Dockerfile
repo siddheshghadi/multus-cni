@@ -10,7 +10,7 @@ ENV GOOS "linux"
 ENV INSTALL_PKGS "git wget"
 RUN yum install -y $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
-    wget https://dl.google.com/go/go1.13.5.linux-ppc64le.tar.gz -P /tmp && \
+    wget https://dl.google.com/go/go1.13.5.linux-$GOARCH.tar.gz -P /tmp && \
     tar xf /tmp/go1.13.5.linux-ppc64le.tar.gz -C /usr/local/ && \
     ln -s /usr/local/go/bin/go /usr/bin/ && \
     cd /usr/src/multus-cni && \
