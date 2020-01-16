@@ -4,10 +4,15 @@ FROM centos:centos7 as build
 # Add everything
 ADD . /usr/src/multus-cni
 
-ENV INSTALL_PKGS "git golang"
-RUN yum install -y epel-release && \
-    yum install -y $INSTALL_PKGS && \
+ENV GOARCH "amd64"
+ENV GOOS "linux"
+
+ENV INSTALL_PKGS "git wget"
+RUN yum install -y $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
+    wget https://dl.google.com/go/go1.13.5.linux-ppc64le.tar.gz -P /tmp && \
+    tar xf /tmp/go1.13.5.linux-ppc64le.tar.gz -C /usr/local/ && \
+    ln -s /usr/local/go/bin/go /usr/bin/ && \
     cd /usr/src/multus-cni && \
     ./build
 
