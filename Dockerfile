@@ -16,7 +16,7 @@ RUN yum install -y $INSTALL_PKGS && \
     cd /usr/src/multus-cni && \
     ./build
 
-FROM centos:centos7
+FROM amd64/centos:centos7
 COPY --from=build /usr/src/multus-cni /usr/src/multus-cni
 WORKDIR /
 
