@@ -4,7 +4,7 @@ language: go
 # for the detail
 # sudo: requried
 dist: trusty
-arch: ppc64le
+
 go:
   - 1.12.x
 
@@ -15,8 +15,10 @@ env:
     - REGISTRY_PASS=${REGISTRY_PASS}
     - secure: "${REGISTRY_SECURE}"
   jobs:
-    - TARGET=amd64
-    - TARGET=ppc64le
+    include:
+      - arch: ppc64le
+        TARGET=amd64
+        TARGET=ppc64le
 
 before_install:
   - sudo apt-get update -qq
