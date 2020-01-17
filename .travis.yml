@@ -17,7 +17,7 @@ env:
   jobs:
     include:
       - arch: ppc64le
-        TARGET=amd64
+        env: TARGET=amd64
         
 
 before_install:
